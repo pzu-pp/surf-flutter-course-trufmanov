@@ -3,6 +3,7 @@ import 'package:places/domain/sight.dart';
 
 class SightDetailsScreen extends StatelessWidget {
   final Sight sight;
+
   const SightDetailsScreen({Key key, @required this.sight}) : super(key: key);
 
   @override
@@ -11,64 +12,69 @@ class SightDetailsScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Stack(
-            children: [
-              Container(
-                height: 350,
-                color: Colors.cyan,
-              ),
-              Positioned(
-                top: 50,
-                left: 19,
-                child: Container(
-                  height: 50,
-                  width: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Container(
-            margin: EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 5),
-            child: Text(
-              sight.name,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontFamily: "Roboto",
-                fontWeight: FontWeight.bold,
-                fontSize: 24
-              ),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(left: 10, top: 5, right: 10, bottom: 5),
-            child: Text(
-              sight.type,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontFamily: "Roboto",
-                fontWeight: FontWeight.bold,
-                fontSize: 18
-              ),
-            ),
-          ),
           Expanded(
-            child: Container(
-              margin: EdgeInsets.only(left: 10, top: 5, right: 10, bottom: 10),
-              child: SingleChildScrollView(
-                child: Text(
-                  sight.details,
-                  style: TextStyle(
-                    fontFamily: "Roboto",
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Stack(
+                    children: [
+                      Container(
+                        height: 350,
+                        color: Colors.cyan,
+                      ),
+                      Positioned(
+                        top: 50,
+                        left: 19,
+                        child: Container(
+                          height: 50,
+                          width: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
+                  Container(
+                    margin: EdgeInsets.only(
+                        left: 10, top: 10, right: 10, bottom: 5),
+                    child: Text(
+                      sight.name,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          fontFamily: "Roboto",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24),
+                    ),
+                  ),
+                  Container(
+                    margin:
+                        EdgeInsets.only(left: 10, top: 5, right: 10, bottom: 5),
+                    child: Text(
+                      sight.type,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          fontFamily: "Roboto",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(
+                        left: 10, top: 5, right: 10, bottom: 10),
+                    child: Text(
+                      sight.details,
+                      style: TextStyle(
+                          fontFamily: "Roboto",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -84,10 +90,9 @@ class SightDetailsScreen extends StatelessWidget {
                 'Построить маршрут',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontFamily: "Roboto",
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18
-                ),
+                    fontFamily: "Roboto",
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
               ),
             ),
           ),
@@ -95,7 +100,8 @@ class SightDetailsScreen extends StatelessWidget {
             children: [
               Expanded(
                 child: Container(
-                  margin: EdgeInsets.only(left: 10, top: 10, right: 5, bottom: 20),
+                  margin:
+                      EdgeInsets.only(left: 10, top: 10, right: 5, bottom: 20),
                   height: 50,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -108,15 +114,15 @@ class SightDetailsScreen extends StatelessWidget {
                       style: TextStyle(
                           fontFamily: "Roboto",
                           fontWeight: FontWeight.bold,
-                          fontSize: 16
-                      ),
+                          fontSize: 16),
                     ),
                   ),
                 ),
               ),
               Expanded(
                 child: Container(
-                  margin: EdgeInsets.only(left: 5, top: 10, right: 10, bottom: 20),
+                  margin:
+                      EdgeInsets.only(left: 5, top: 10, right: 10, bottom: 20),
                   height: 50,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -129,8 +135,7 @@ class SightDetailsScreen extends StatelessWidget {
                       style: TextStyle(
                           fontFamily: "Roboto",
                           fontWeight: FontWeight.bold,
-                          fontSize: 16
-                      ),
+                          fontSize: 16),
                     ),
                   ),
                 ),
