@@ -3,13 +3,13 @@ import 'package:places/domain/sight.dart';
 
 class SightCard extends StatelessWidget {
   final Sight sight;
+
   const SightCard({Key key, @required this.sight}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(left: 16, right: 16, bottom: 16),
-      height: 220,
+    return AspectRatio(
+      aspectRatio: 3 / 2,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -19,9 +19,8 @@ class SightCard extends StatelessWidget {
                 height: 100,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20)
-                  ),
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20)),
                   color: Colors.cyan,
                 ),
               ),
@@ -31,11 +30,10 @@ class SightCard extends StatelessWidget {
                 child: Text(
                   sight.type,
                   style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: "Roboto",
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14
-                  ),
+                      color: Colors.white,
+                      fontFamily: "Roboto",
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14),
                 ),
               ),
               Positioned(
@@ -60,15 +58,24 @@ class SightCard extends StatelessWidget {
                 fontSize: 16),
           ),
           SizedBox(height: 2),
-          Text(
-            sight.details,
-            maxLines: 3,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-                color: Color(0xFF7C7E92),
-                fontFamily: "Roboto",
-                fontSize: 12),
+          Expanded(
+            // child: FractionallySizedBox(
+            //   widthFactor: 0.5,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                  maxWidth: MediaQuery.of(context).size.width / 2),
+              child: Text(
+                sight.details,
+                // maxLines: 3,
+                // overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: Color(0xFF7C7E92),
+                    fontFamily: "Roboto",
+                    fontSize: 14),
+              ),
+            ),
           ),
+          SizedBox(height: 10),
         ],
       ),
     );
