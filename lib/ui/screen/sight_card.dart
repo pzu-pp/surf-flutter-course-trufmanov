@@ -61,9 +61,9 @@ class SightCard extends StatelessWidget {
           Expanded(
             // child: FractionallySizedBox(
             //   widthFactor: 0.5,
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                  maxWidth: MediaQuery.of(context).size.width / 2),
+            // child: ConstrainedBox(
+            //   constraints: BoxConstraints(
+            //       maxWidth: MediaQuery.of(context).size.width / 2),
               child: Text(
                 sight.details,
                 // maxLines: 3,
@@ -73,7 +73,7 @@ class SightCard extends StatelessWidget {
                     fontFamily: "Roboto",
                     fontSize: 14),
               ),
-            ),
+//            ),
           ),
           SizedBox(height: 10),
         ],
