@@ -12,6 +12,7 @@ class SightDetailsScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          SizedBox(height: 30),
           Expanded(
             child: SingleChildScrollView(
               child: Column(
@@ -19,9 +20,17 @@ class SightDetailsScreen extends StatelessWidget {
                 children: [
                   Stack(
                     children: [
-                      Container(
-                        height: 350,
-                        color: Colors.cyan,
+                      Image.network(
+                        sight.url,
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) {
+                            return child;
+                          } else {
+                            return Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                        },
                       ),
                       Positioned(
                         top: 50,
