@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain/sight.dart';
+import 'package:places/ui/screen/sight_image.dart';
 
 class SightDetailsScreen extends StatelessWidget {
   final Sight sight;
@@ -12,7 +13,6 @@ class SightDetailsScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          SizedBox(height: 30),
           Expanded(
             child: SingleChildScrollView(
               child: Column(
@@ -20,24 +20,13 @@ class SightDetailsScreen extends StatelessWidget {
                 children: [
                   Stack(
                     children: [
-                      Image.network(
-                        sight.url,
-                        loadingBuilder: (context, child, loadingProgress) {
-                          if (loadingProgress == null) {
-                            return child;
-                          } else {
-                            return Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          }
-                        },
-                      ),
+                      SightImage(sight.url),
                       Positioned(
                         top: 50,
-                        left: 19,
+                        left: 20,
                         child: Container(
-                          height: 50,
-                          width: 50,
+                          height: 32,
+                          width: 32,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                             color: Colors.white,
@@ -56,7 +45,7 @@ class SightDetailsScreen extends StatelessWidget {
                       style: TextStyle(
                           fontFamily: "Roboto",
                           fontWeight: FontWeight.bold,
-                          fontSize: 24),
+                          fontSize: 29),
                     ),
                   ),
                   Container(
@@ -79,8 +68,7 @@ class SightDetailsScreen extends StatelessWidget {
                       sight.details,
                       style: TextStyle(
                           fontFamily: "Roboto",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14),
+                          fontSize: 18),
                     ),
                   ),
                 ],
@@ -89,7 +77,7 @@ class SightDetailsScreen extends StatelessWidget {
           ),
           Container(
             margin: EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 5),
-            height: 55,
+            height: 65,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(20)),
               color: Colors.green,
@@ -123,7 +111,7 @@ class SightDetailsScreen extends StatelessWidget {
                       style: TextStyle(
                           fontFamily: "Roboto",
                           fontWeight: FontWeight.bold,
-                          fontSize: 16),
+                          fontSize: 18),
                     ),
                   ),
                 ),
@@ -144,7 +132,7 @@ class SightDetailsScreen extends StatelessWidget {
                       style: TextStyle(
                           fontFamily: "Roboto",
                           fontWeight: FontWeight.bold,
-                          fontSize: 16),
+                          fontSize: 18),
                     ),
                   ),
                 ),

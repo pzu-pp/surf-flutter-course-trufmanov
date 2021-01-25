@@ -12,33 +12,9 @@ class _SightListScreenState extends State<SightListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SightAppBar(),
-      // appBar: AppBar(
-      //   //backgroundColor: Colors.white,
-      //   backgroundColor: Colors.transparent,
-      //   elevation: 0,
-      //   toolbarHeight: 150,
-      //   title: Text(
-      //     'Список\nинтересных мест',
-      //     textAlign: TextAlign.left,
-      //     maxLines: 2,
-      //     style: TextStyle(
-      //       color: Colors.black,
-      //       fontFamily: 'Roboto-Regular.ttf',
-      //       fontSize: 32,
-      //       fontWeight: FontWeight.bold,
-      //     ),
-      //   ),
-      // ),
       body: SingleChildScrollView(
         child: Column(
-          children: [
-            SightCard(sight: mocks[0]),
-            SightCard(sight: mocks[1]),
-            SightCard(sight: mocks[2]),
-            SightCard(sight: mocks[3]),
-            SightCard(sight: mocks[4]),
-          ]
-//        children: mocks.map((item) => SightCard(sight: item)).toList(),
+          children: mocks.map((item) => SightCard(sight: item)).toList(),
         ),
       ),
     );
@@ -46,7 +22,6 @@ class _SightListScreenState extends State<SightListScreen> {
 }
 
 class SightAppBar extends StatelessWidget implements PreferredSizeWidget {
-
   const SightAppBar({Key key}) : super(key: key);
 
   @override
