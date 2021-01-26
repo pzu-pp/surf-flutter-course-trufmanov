@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:places/domain/sight.dart';
 import 'package:places/ui/screen/sight_image.dart';
 
+// Класс виджета карточки отдельной достопримечательности
 class SightCard extends StatelessWidget {
   final Sight sight;
 
-  const SightCard({Key key, @required this.sight}) : super(key: key);
+// Конструктор
+// sight - класс достопримечательности, обязательный не null параметр
+  const SightCard({Key key, @required this.sight})
+      : assert(sight != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +29,7 @@ class SightCard extends StatelessWidget {
                   flex: 96,
                   child: Stack(
                     children: [
-                      SightImage(sight.url),
+                      SightImage(url: sight.url),
                       Positioned(
                         top: 16,
                         left: 16,
@@ -41,9 +46,12 @@ class SightCard extends StatelessWidget {
                         top: 18,
                         right: 19,
                         child: Container(
-                          color: Colors.white,
-                          height: 18,
-                          width: 20,
+                          child: Image.asset(
+                            'res/Heart.png',
+                          ),
+                          color: Colors.transparent,
+                          height: 30,
+                          width: 30,
                         ),
                       )
                     ],

@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:places/domain/sight.dart';
 import 'package:places/ui/screen/sight_image.dart';
 
+// Класс виджета детальной информации отдельной достопримечательности
 class SightDetailsScreen extends StatelessWidget {
   final Sight sight;
 
-  const SightDetailsScreen({Key key, @required this.sight}) : super(key: key);
+// Конструктор
+// sight - класс достопримечательности, обязательный не null параметр
+  const SightDetailsScreen({Key key, @required this.sight})
+      : assert(sight != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,16 +25,23 @@ class SightDetailsScreen extends StatelessWidget {
                 children: [
                   Stack(
                     children: [
-                      SightImage(sight.url),
+                      SightImage(url: sight.url),
                       Positioned(
                         top: 50,
                         left: 20,
                         child: Container(
-                          height: 32,
-                          width: 32,
+                          height: 40,
+                          width: 40,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                             color: Colors.white,
+                          ),
+                          child: Center(
+                            child: Image.asset(
+                              'res/Arrow.png',
+                              color: Colors.black,
+                              colorBlendMode: BlendMode.modulate,
+                            ),
                           ),
                         ),
                       ),
@@ -66,9 +78,7 @@ class SightDetailsScreen extends StatelessWidget {
                         left: 10, top: 5, right: 10, bottom: 10),
                     child: Text(
                       sight.details,
-                      style: TextStyle(
-                          fontFamily: "Roboto",
-                          fontSize: 18),
+                      style: TextStyle(fontFamily: "Roboto", fontSize: 18),
                     ),
                   ),
                 ],
@@ -82,16 +92,25 @@ class SightDetailsScreen extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(20)),
               color: Colors.green,
             ),
-            child: Center(
-              child: Text(
-                'Построить маршрут',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontFamily: "Roboto",
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18),
-              ),
+//            child: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'res/GO.png',
+                ),
+                Text(
+                  '  ПОСТРОИТЬ МАРШРУТ',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: "Roboto",
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18),
+                ),
+              ],
             ),
+//            ),
           ),
           Row(
             children: [
@@ -102,17 +121,26 @@ class SightDetailsScreen extends StatelessWidget {
                   height: 50,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
-                    color: Colors.black12,
+                    color: Colors.transparent,
                   ),
-                  child: Center(
-                    child: Text(
-                      'Запланировать',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontFamily: "Roboto",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18),
-                    ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'res/Calendar.png',
+                        color: Colors.grey,
+                        colorBlendMode: BlendMode.modulate,
+                      ),
+                      Text(
+                        ' Запланировать',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontFamily: "Roboto",
+                            fontSize: 18,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -123,18 +151,24 @@ class SightDetailsScreen extends StatelessWidget {
                   height: 50,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
-                    color: Colors.black12,
+                    color: Colors.transparent,
                   ),
-                  child: Center(
-                    child: Text(
-                      'В избранное',
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'res/Heart.png',
+                          color: Colors.black,
+                          colorBlendMode: BlendMode.modulate,
+                        ),
+                    Text(
+                      ' В избранное',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontFamily: "Roboto",
-                          fontWeight: FontWeight.bold,
                           fontSize: 18),
                     ),
-                  ),
+                  ]),
                 ),
               ),
             ],
