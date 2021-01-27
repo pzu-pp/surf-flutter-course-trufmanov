@@ -81,97 +81,95 @@ class SightDetailsScreen extends StatelessWidget {
                       style: TextStyle(fontFamily: "Roboto", fontSize: 18),
                     ),
                   ),
-                ],
-              ),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 5),
-            height: 65,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(20)),
-              color: Colors.green,
-            ),
-//            child: Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'res/GO.png',
-                ),
-                Text(
-                  '  ПОСТРОИТЬ МАРШРУТ',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: "Roboto",
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18),
-                ),
-              ],
-            ),
-//            ),
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: Container(
-                  margin:
-                      EdgeInsets.only(left: 10, top: 10, right: 5, bottom: 20),
-                  height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    color: Colors.transparent,
+                  Container(
+                    margin: EdgeInsets.only(
+                        left: 10, top: 10, right: 10, bottom: 5),
+                    height: 65,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      color: Colors.green,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'res/GO.png',
+                        ),
+                        Text(
+                          '  ПОСТРОИТЬ МАРШРУТ',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: "Roboto",
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
+                        ),
+                      ],
+                    ),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  Row(
                     children: [
-                      Image.asset(
-                        'res/Calendar.png',
-                        color: Colors.grey,
-                        colorBlendMode: BlendMode.modulate,
+                      Expanded(
+                        child: Container(
+                          margin: EdgeInsets.only(
+                              left: 10, top: 10, right: 5, bottom: 20),
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            color: Colors.transparent,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'res/Calendar.png',
+                                color: Colors.grey,
+                                colorBlendMode: BlendMode.modulate,
+                              ),
+                              Text(
+                                ' Запланировать',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontFamily: "Roboto",
+                                  fontSize: 18,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
-                      Text(
-                        ' Запланировать',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontFamily: "Roboto",
-                            fontSize: 18,
-                          color: Colors.grey,
+                      Expanded(
+                        child: Container(
+                          margin: EdgeInsets.only(
+                              left: 5, top: 10, right: 10, bottom: 20),
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            color: Colors.transparent,
+                          ),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  'res/Heart.png',
+                                  color: Colors.black,
+                                  colorBlendMode: BlendMode.modulate,
+                                ),
+                                Text(
+                                  ' В избранное',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontFamily: "Roboto", fontSize: 18),
+                                ),
+                              ]),
                         ),
                       ),
                     ],
                   ),
-                ),
+                ],
               ),
-              Expanded(
-                child: Container(
-                  margin:
-                      EdgeInsets.only(left: 5, top: 10, right: 10, bottom: 20),
-                  height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    color: Colors.transparent,
-                  ),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'res/Heart.png',
-                          color: Colors.black,
-                          colorBlendMode: BlendMode.modulate,
-                        ),
-                    Text(
-                      ' В избранное',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontFamily: "Roboto",
-                          fontSize: 18),
-                    ),
-                  ]),
-                ),
-              ),
-            ],
+            ),
           ),
         ],
       ),
