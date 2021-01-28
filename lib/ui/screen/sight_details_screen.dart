@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain/sight.dart';
+import 'package:places/ui/screen/sight_image.dart';
 
+// Класс виджета детальной информации отдельной достопримечательности
 class SightDetailsScreen extends StatelessWidget {
   final Sight sight;
 
-  const SightDetailsScreen({Key key, @required this.sight}) : super(key: key);
+// Конструктор
+// sight - класс достопримечательности, обязательный не null параметр
+  const SightDetailsScreen({Key key, @required this.sight})
+      : assert(sight != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,19 +25,23 @@ class SightDetailsScreen extends StatelessWidget {
                 children: [
                   Stack(
                     children: [
-                      Container(
-                        height: 350,
-                        color: Colors.cyan,
-                      ),
+                      SightImage(url: sight.url),
                       Positioned(
                         top: 50,
-                        left: 19,
+                        left: 20,
                         child: Container(
-                          height: 50,
-                          width: 50,
+                          height: 40,
+                          width: 40,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                             color: Colors.white,
+                          ),
+                          child: Center(
+                            child: Image.asset(
+                              'res/Arrow.png',
+                              color: Colors.black,
+                              colorBlendMode: BlendMode.modulate,
+                            ),
                           ),
                         ),
                       ),
@@ -47,7 +57,7 @@ class SightDetailsScreen extends StatelessWidget {
                       style: TextStyle(
                           fontFamily: "Roboto",
                           fontWeight: FontWeight.bold,
-                          fontSize: 24),
+                          fontSize: 29),
                     ),
                   ),
                   Container(
@@ -68,79 +78,98 @@ class SightDetailsScreen extends StatelessWidget {
                         left: 10, top: 5, right: 10, bottom: 10),
                     child: Text(
                       sight.details,
-                      style: TextStyle(
-                          fontFamily: "Roboto",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14),
+                      style: TextStyle(fontFamily: "Roboto", fontSize: 18),
                     ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(
+                        left: 10, top: 10, right: 10, bottom: 5),
+                    height: 65,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      color: Colors.green,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'res/GO.png',
+                        ),
+                        Text(
+                          '  ПОСТРОИТЬ МАРШРУТ',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: "Roboto",
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          margin: EdgeInsets.only(
+                              left: 10, top: 10, right: 5, bottom: 20),
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            color: Colors.transparent,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'res/Calendar.png',
+                                color: Colors.grey,
+                                colorBlendMode: BlendMode.modulate,
+                              ),
+                              Text(
+                                ' Запланировать',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontFamily: "Roboto",
+                                  fontSize: 18,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          margin: EdgeInsets.only(
+                              left: 5, top: 10, right: 10, bottom: 20),
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            color: Colors.transparent,
+                          ),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  'res/Heart.png',
+                                  color: Colors.black,
+                                  colorBlendMode: BlendMode.modulate,
+                                ),
+                                Text(
+                                  ' В избранное',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontFamily: "Roboto", fontSize: 18),
+                                ),
+                              ]),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
-          ),
-          Container(
-            margin: EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 5),
-            height: 55,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(20)),
-              color: Colors.green,
-            ),
-            child: Center(
-              child: Text(
-                'Построить маршрут',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontFamily: "Roboto",
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18),
-              ),
-            ),
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: Container(
-                  margin:
-                      EdgeInsets.only(left: 10, top: 10, right: 5, bottom: 20),
-                  height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    color: Colors.black12,
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Запланировать',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontFamily: "Roboto",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16),
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  margin:
-                      EdgeInsets.only(left: 5, top: 10, right: 10, bottom: 20),
-                  height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    color: Colors.black12,
-                  ),
-                  child: Center(
-                    child: Text(
-                      'В избранное',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontFamily: "Roboto",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16),
-                    ),
-                  ),
-                ),
-              ),
-            ],
           ),
         ],
       ),
