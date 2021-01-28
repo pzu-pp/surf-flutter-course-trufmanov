@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain/sight.dart';
 
-// Класс виджета - загружаемая по указанному URL-у картинка с индикацией
-// процесса загрузки.
+/// Класс виджета - загружаемая по указанному URL-у картинка с индикацией
+/// процесса загрузки.
 class SightImage extends StatelessWidget {
   final String url;
 
-// Конструктор.
-// url - строка, URL ресурса (фотографии), обязательный параметр.
-//  const SightImage(this.url, {Key key}) : super(key: key);
+/// Конструктор.
+/// url - строка, URL ресурса (фотографии), обязательный параметр.
+///  const SightImage(this.url, {Key key}) : super(key: key);
   const SightImage({Key key, @required this.url})
       : assert(url != null),
         assert(url != ''),

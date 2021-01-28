@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:places/ui/screen/sight_list_screen.dart';
 import 'package:places/ui/screen/sight_details_screen.dart';
+import 'package:places/ui/screen/visiting_screen.dart';
 import 'package:places/mocks.dart';
 
 void main() {
@@ -13,8 +14,9 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Test app title...',
-      home: SightDetailsScreen(sight: mocks[4]),
-//      home: SightListScreen(),
+//        home: VisitingScreen(),
+//        home: SightDetailsScreen(sight: mocks[4]),
+      home: SightListScreen(),
     );
   }
 }

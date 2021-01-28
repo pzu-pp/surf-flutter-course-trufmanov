@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain/sight.dart';
-import 'package:places/ui/screen/sight_image.dart';
+import 'package:places/ui/widgets/sight_image.dart';
 
-// Класс виджета детальной информации отдельной достопримечательности
+/// Класс виджета детальной информации отдельной достопримечательности
 class SightDetailsScreen extends StatelessWidget {
   final Sight sight;
 
-// Конструктор
-// sight - класс достопримечательности, обязательный не null параметр
+/// Конструктор
+/// sight - класс достопримечательности, обязательный не null параметр
   const SightDetailsScreen({Key key, @required this.sight})
       : assert(sight != null),
         super(key: key);

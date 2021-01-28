@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain/sight.dart';
-import 'package:places/ui/screen/sight_image.dart';
+import 'file:///D:/Projects/surf-flutter-course-trufmanov/lib/ui/widgets/sight_image.dart';
 
-// Класс виджета карточки отдельной достопримечательности
+/// Класс виджета карточки отдельной достопримечательности
 class SightCard extends StatelessWidget {
   final Sight sight;
 
-// Конструктор
-// sight - класс достопримечательности, обязательный не null параметр
+/// Конструктор
+/// sight - класс достопримечательности, обязательный не null параметр
   const SightCard({Key key, @required this.sight})
       : assert(sight != null),
         super(key: key);

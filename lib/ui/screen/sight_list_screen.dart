@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:places/ui/screen/sight_card.dart';
+import 'package:places/ui/widgets/sight_card.dart';
 import 'package:places/mocks.dart';
 
+/// Класс виджета списка достопримечательностей
 class SightListScreen extends StatefulWidget {
   @override
   _SightListScreenState createState() => _SightListScreenState();
