@@ -1,3 +1,4 @@
+// Класс достопримечательности
 class Sight {
 
   String name;
