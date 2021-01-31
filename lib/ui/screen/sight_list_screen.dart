@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:places/ui/widgets/sight_card.dart';
 import 'package:places/mocks.dart';
+import 'package:places/ui/widgets/app_bottom_navigation_bar.dart';
 
 /// Класс виджета списка достопримечательностей
 class SightListScreen extends StatefulWidget {
@@ -18,6 +19,7 @@ class _SightListScreenState extends State<SightListScreen> {
           children: mocks.map((item) => SightCard(sight: item)).toList(),
         ),
       ),
+      bottomNavigationBar: AppBottomNavigationBar(),
     );
   }
 }
