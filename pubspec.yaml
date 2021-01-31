@@ -26,6 +26,7 @@ flutter:
 
   assets:
     - res/
+    - res/empty_pages/
    
 #  fonts:
 #    - family: Roboto

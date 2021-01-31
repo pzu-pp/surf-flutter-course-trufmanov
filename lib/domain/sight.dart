@@ -1,4 +1,11 @@
-// Класс достопримечательности
+/// Перечисление состояние достопримечательности
+enum SightState{
+  unknown,
+  scheduled,
+  visited,
+}
+
+/// Класс достопримечательности
 class Sight {
 
   String name;
@@ -7,6 +14,9 @@ class Sight {
   String url;
   String details;
   String type;
+  String scheduled;
+  String info;
+  SightState state;
 
   Sight({
     this.name,
@@ -15,6 +25,9 @@ class Sight {
     this.url,
     this.details,
     this.type,
+    this.scheduled,
+    this.info,
+    this.state = SightState.unknown,
   });
 
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain/sight.dart';
-import 'file:///D:/Projects/surf-flutter-course-trufmanov/lib/ui/widgets/sight_image.dart';
+import 'package:places/ui/widgets/sight_image.dart';
 
 /// Класс виджета карточки отдельной достопримечательности
 class SightCard extends StatelessWidget {

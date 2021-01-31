@@ -14,9 +14,9 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Test app title...',
-//        home: VisitingScreen(),
-//        home: SightDetailsScreen(sight: mocks[4]),
-      home: SightListScreen(),
+      home: VisitingScreen(),
+//      home: SightDetailsScreen(sight: mocks[4]),
+//      home: SightListScreen(),
     );
   }
 }
