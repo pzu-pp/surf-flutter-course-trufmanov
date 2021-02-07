@@ -6,8 +6,8 @@ import 'package:places/ui/widgets/sight_image.dart';
 class SightDetailsScreen extends StatelessWidget {
   final Sight sight;
 
-/// Конструктор
-/// sight - класс достопримечательности, обязательный не null параметр
+  /// Конструктор
+  /// sight - класс достопримечательности, обязательный не null параметр
   const SightDetailsScreen({Key key, @required this.sight})
       : assert(sight != null),
         super(key: key);
@@ -15,75 +15,94 @@ class SightDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Stack(
+              children: [
+                SightImage(url: sight.url),
+                Positioned(
+                  top: 50,
+                  left: 20,
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      color: Theme.of(context).canvasColor,
+                    ),
+                    child: Center(
+                      child: Image.asset(
+                        'res/Arrow.png',
+                        color:
+                            Theme.of(context).appBarTheme.textTheme.title.color,
+                        colorBlendMode: BlendMode.modulate,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding:
+                  EdgeInsets.only(left: 16, right: 16, top: 24, bottom: 24),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Stack(
+                  Text(
+                    sight.name,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        color:
+                            Theme.of(context).appBarTheme.textTheme.title.color,
+                        fontFamily: "Roboto",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 29),
+                  ),
+                  SizedBox(height: 2),
+                  Row(
                     children: [
-                      SightImage(url: sight.url),
-                      Positioned(
-                        top: 50,
-                        left: 20,
-                        child: Container(
-                          height: 40,
-                          width: 40,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            color: Colors.white,
-                          ),
-                          child: Center(
-                            child: Image.asset(
-                              'res/Arrow.png',
-                              color: Colors.black,
-                              colorBlendMode: BlendMode.modulate,
-                            ),
-                          ),
-                        ),
+                      Text(
+                        sight.type,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            color: Theme.of(context)
+                                .appBarTheme
+                                .textTheme
+                                .title
+                                .color,
+                            fontFamily: "Roboto",
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18),
+                      ),
+                      SizedBox(width: 20),
+                      Text(
+                        sight.info,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontFamily: "Roboto",
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey,
+                            fontSize: 18),
                       ),
                     ],
                   ),
-                  Container(
-                    margin: EdgeInsets.only(
-                        left: 10, top: 10, right: 10, bottom: 5),
-                    child: Text(
-                      sight.name,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                          fontFamily: "Roboto",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 29),
-                    ),
-                  ),
-                  Container(
-                    margin:
-                        EdgeInsets.only(left: 10, top: 5, right: 10, bottom: 5),
-                    child: Text(
-                      sight.type,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                          fontFamily: "Roboto",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18),
+                  SizedBox(height: 24),
+                  Text(
+                    sight.details,
+                    style: TextStyle(
+                      color:
+                          Theme.of(context).appBarTheme.textTheme.title.color,
+                      fontFamily: "Roboto",
+                      fontSize: 18,
                     ),
                   ),
                   Container(
                     margin: EdgeInsets.only(
-                        left: 10, top: 5, right: 10, bottom: 10),
-                    child: Text(
-                      sight.details,
-                      style: TextStyle(fontFamily: "Roboto", fontSize: 18),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(
-                        left: 10, top: 10, right: 10, bottom: 5),
+                        left: 10, top: 20, right: 20, bottom: 5),
                     height: 65,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -92,8 +111,13 @@ class SightDetailsScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset(
-                          'res/GO.png',
+                        Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: Image.asset(
+                            'res/empty_pages/GO.png',
+                            color: Colors.white,
+                            colorBlendMode: BlendMode.srcATop,
+                          ),
                         ),
                         Text(
                           '  ПОСТРОИТЬ МАРШРУТ',
@@ -160,7 +184,14 @@ class SightDetailsScreen extends StatelessWidget {
                                   ' В избранное',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                      fontFamily: "Roboto", fontSize: 18),
+                                    color: Theme.of(context)
+                                        .appBarTheme
+                                        .textTheme
+                                        .title
+                                        .color,
+                                    fontFamily: "Roboto",
+                                    fontSize: 18,
+                                  ),
                                 ),
                               ]),
                         ),
@@ -170,8 +201,8 @@ class SightDetailsScreen extends StatelessWidget {
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
