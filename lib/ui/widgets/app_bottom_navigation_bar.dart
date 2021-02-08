@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Виджет BottomNavigationBar
 class AppBottomNavigationBar extends StatelessWidget {
   const AppBottomNavigationBar({
     Key key,
@@ -11,36 +12,32 @@ class AppBottomNavigationBar extends StatelessWidget {
       currentIndex: 0,
       items: [
         BottomNavigationBarItem(
-          icon: Image.asset(
-            'res/List.png',
-            color: Colors.black,
-            colorBlendMode: BlendMode.modulate,
+          icon: Icon(
+            Icons.list_alt,
+            color: Theme.of(context).appBarTheme.textTheme.title.color,
           ),
-          label: '',
+          label: ' ',
         ),
         BottomNavigationBarItem(
-          icon: Image.asset(
-            'res/Map.png',
-            color: Colors.black,
-            colorBlendMode: BlendMode.modulate,
+          icon: Icon(
+            Icons.map_outlined,
+            color: Theme.of(context).appBarTheme.textTheme.title.color,
           ),
-          label: '',
+          label: ' ',
         ),
         BottomNavigationBarItem(
-          icon: Image.asset(
-            'res/Heart.png',
-            color: Colors.black,
-            colorBlendMode: BlendMode.modulate,
+          icon: Icon(
+            Icons.favorite_outlined,
+            color: Theme.of(context).appBarTheme.textTheme.title.color,
           ),
-          label: '',
+          label: ' ',
         ),
         BottomNavigationBarItem(
-          icon: Image.asset(
-            'res/Settings.png',
-            color: Colors.black,
-            colorBlendMode: BlendMode.modulate,
+          icon: Icon(
+            Icons.settings_outlined,
+            color: Theme.of(context).appBarTheme.textTheme.title.color,
           ),
-          label: '',
+          label: ' ',
         ),
       ],
     );

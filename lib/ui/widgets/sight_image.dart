@@ -6,9 +6,9 @@ import 'package:places/domain/sight.dart';
 class SightImage extends StatelessWidget {
   final String url;
 
-/// Конструктор.
-/// url - строка, URL ресурса (фотографии), обязательный параметр.
-///  const SightImage(this.url, {Key key}) : super(key: key);
+  /// Конструктор.
+  /// url - строка, URL ресурса (фотографии), обязательный параметр.
+  ///  const SightImage(this.url, {Key key}) : super(key: key);
   const SightImage({Key key, @required this.url})
       : assert(url != null),
         assert(url != ''),
