@@ -50,22 +50,44 @@ class SightCard extends StatelessWidget {
                               color: Colors.white, fontWeight: FontWeight.bold),
                         ),
                       ),
+                      sight.state == SightState.visited
+                          ? Positioned(
+                              top: 0,
+                              right: 50,
+                              child: TextButton(
+                                child: Image.asset(
+                                  'res/Share.png',
+                                  fit: BoxFit.fitWidth,
+                                  height: 30,
+                                  width: 30,
+                                ),
+                                onPressed: () => print('"Share" pressed.'),
+                              ),
+                            )
+                          : Positioned(
+                              top: 0,
+                              right: 50,
+                              child: TextButton(
+                                child: Image.asset(
+                                  'res/Calendar.png',
+                                  fit: BoxFit.fitWidth,
+                                  height: 30,
+                                  width: 30,
+                                ),
+                                onPressed: () => print('"Calendar" pressed.'),
+                              ),
+                            ),
                       Positioned(
-                        top: 18,
-                        right: 59,
-                        child: Image.asset(
-                          sight.state == SightState.visited
-                              ? 'res/Share.png'
-                              : 'res/Calendar.png',
-                          fit: BoxFit.fitWidth,
-                        ),
-                      ),
-                      Positioned(
-                        top: 18,
-                        right: 19,
-                        child: Image.asset(
-                          'res/Close.png',
-                          fit: BoxFit.fitWidth,
+                        top: 0,
+                        right: 0,
+                        child: TextButton(
+                          child: Image.asset(
+                            'res/Close.png',
+                            fit: BoxFit.fitWidth,
+                            height: 30,
+                            width: 30,
+                          ),
+                          onPressed: () => print('"X" pressed.'),
                         ),
                       ),
                     ],
