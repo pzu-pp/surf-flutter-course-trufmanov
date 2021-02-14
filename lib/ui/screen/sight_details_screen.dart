@@ -69,7 +69,7 @@ class SightDetailsScreen extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        sight.type,
+                        sight.type.name,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(

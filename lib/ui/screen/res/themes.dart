@@ -30,6 +30,9 @@ final lightTheme = ThemeData(
     unselectedLabelStyle: TextStyle(fontFamily: "Roboto", fontSize: 18),
     labelStyle: TextStyle(fontFamily: "Roboto", fontSize: 18),
   ),
+  sliderTheme: SliderThemeData(
+    thumbColor: Colors.grey,
+  ),
 );
 
 /// Темная тема
@@ -55,6 +58,9 @@ final darkTheme = ThemeData(
     ),
     unselectedLabelStyle: TextStyle(fontFamily: "Roboto", fontSize: 18),
     labelStyle: TextStyle(fontFamily: "Roboto", fontSize: 18),
+  ),
+  sliderTheme: SliderThemeData(
+    overlayColor: Colors.white,
   ),
   canvasColor: Color(0xFF2D2E3E),
 );
