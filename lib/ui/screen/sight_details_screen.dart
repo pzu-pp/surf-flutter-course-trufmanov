@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:places/domain/sight.dart';
 import 'package:places/ui/widgets/sight_image.dart';
@@ -25,20 +26,24 @@ class SightDetailsScreen extends StatelessWidget {
                 Positioned(
                   top: 50,
                   left: 20,
-                  child: Container(
+                  child: SizedBox(
                     height: 40,
                     width: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    child: RaisedButton(
                       color: Theme.of(context).canvasColor,
-                    ),
-                    child: Center(
+                      elevation: 0,
+                      textColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
                       child: Image.asset(
                         'res/Arrow.png',
+                         height: 30,
                         color:
                             Theme.of(context).appBarTheme.textTheme.title.color,
                         colorBlendMode: BlendMode.modulate,
+                        fit: BoxFit.fitHeight,
                       ),
+                      onPressed: () => print('"<" pressed'),
                     ),
                   ),
                 ),
@@ -64,7 +69,7 @@ class SightDetailsScreen extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        sight.type,
+                        sight.type.name,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -102,99 +107,88 @@ class SightDetailsScreen extends StatelessWidget {
                   ),
                   Container(
                     margin: EdgeInsets.only(
-                        left: 10, top: 20, right: 20, bottom: 5),
+                        left: 10, top: 20, right: 10, bottom: 20),
                     height: 65,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                    child: RaisedButton(
                       color: Colors.green,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(15),
-                          child: Image.asset(
-                            'res/empty_pages/GO.png',
-                            color: Colors.white,
-                            colorBlendMode: BlendMode.srcATop,
-                          ),
-                        ),
-                        Text(
-                          '  ПОСТРОИТЬ МАРШРУТ',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
+                      elevation: 0,
+                      textColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(20))),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(15),
+                            child: Image.asset(
+                              'res/empty_pages/GO.png',
                               color: Colors.white,
-                              fontFamily: "Roboto",
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18),
-                        ),
-                      ],
+                              colorBlendMode: BlendMode.srcATop,
+                            ),
+                          ),
+                          SizedBox(width: 5),
+                          Text(
+                            'ПОСТРОИТЬ МАРШРУТ',
+                            style: TextStyle(
+                                fontFamily: "Roboto",
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18),
+                          ),
+                        ],
+                      ),
+                      onPressed: () => print('"ПОСТРОИТЬ МАРШРУТ" pressed'),
                     ),
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Expanded(
-                        child: Container(
-                          margin: EdgeInsets.only(
-                              left: 10, top: 10, right: 5, bottom: 20),
-                          height: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                            color: Colors.transparent,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                'res/Calendar.png',
+                      TextButton(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'res/Calendar.png',
+                              color: Colors.grey,
+                              colorBlendMode: BlendMode.modulate,
+                            ),
+                            Text(
+                              ' Запланировать',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: "Roboto",
+                                fontSize: 18,
                                 color: Colors.grey,
-                                colorBlendMode: BlendMode.modulate,
                               ),
-                              Text(
-                                ' Запланировать',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontFamily: "Roboto",
-                                  fontSize: 18,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
+                        onPressed: () => print('"Запланировать" pressed.'),
                       ),
-                      Expanded(
-                        child: Container(
-                          margin: EdgeInsets.only(
-                              left: 5, top: 10, right: 10, bottom: 20),
-                          height: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                            color: Colors.transparent,
-                          ),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  'res/Heart.png',
-                                  color: Colors.black,
-                                  colorBlendMode: BlendMode.modulate,
-                                ),
-                                Text(
-                                  ' В избранное',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Theme.of(context)
-                                        .appBarTheme
-                                        .textTheme
-                                        .title
-                                        .color,
-                                    fontFamily: "Roboto",
-                                    fontSize: 18,
-                                  ),
-                                ),
-                              ]),
+                      TextButton(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'res/Heart.png',
+                              color: Colors.black,
+                              colorBlendMode: BlendMode.modulate,
+                            ),
+                            Text(
+                              ' В избранное',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Theme.of(context)
+                                    .appBarTheme
+                                    .textTheme
+                                    .title
+                                    .color,
+                                fontFamily: "Roboto",
+                                fontSize: 18,
+                              ),
+                            ),
+                          ],
                         ),
+                        onPressed: () => print('"В избранное" pressed.'),
                       ),
                     ],
                   ),

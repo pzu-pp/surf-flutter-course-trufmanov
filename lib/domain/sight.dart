@@ -1,5 +1,14 @@
+/// Класс типа достопримечательности
+class SightType {
+  String name;
+  String image;
+  bool isChecked;
+
+  SightType({this.name, this.image, this.isChecked = false});
+}
+
 /// Перечисление состояние достопримечательности
-enum SightState{
+enum SightState {
   unknown,
   scheduled,
   visited,
@@ -7,13 +16,12 @@ enum SightState{
 
 /// Класс достопримечательности
 class Sight {
-
   String name;
   double lat;
   double lon;
   String url;
   String details;
-  String type;
+  SightType type;
   String scheduled;
   String info;
   SightState state;
@@ -29,5 +37,4 @@ class Sight {
     this.info,
     this.state = SightState.unknown,
   });
-
 }
