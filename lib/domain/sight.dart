@@ -22,9 +22,9 @@ class Sight {
   String url;
   String details;
   SightType type;
-  String scheduled;
-  String info;
-  SightState state;
+  String scheduled = '';
+  String info = 'Открыто';
+  SightState state = SightState.unknown;
 
   Sight({
     this.name,
