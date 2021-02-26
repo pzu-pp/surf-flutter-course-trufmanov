@@ -11,14 +11,17 @@ enum SightCardType {
 class SightCard extends StatelessWidget {
   final Sight sight;
   final SightCardType cardType;
+  final ValueChanged<Sight> onDelete;
 
   /// Конструктор
   /// sight - класс достопримечательности, обязательный не null параметр
   const SightCard(
       {Key key,
       @required this.sight,
-      @required this.cardType = SightCardType.simple})
+      this.cardType = SightCardType.simple,
+      @required this.onDelete})
       : assert(sight != null),
+        assert(onDelete != null),
         super(key: key);
 
   @override
@@ -90,7 +93,7 @@ class SightCard extends StatelessWidget {
                               height: 30,
                               width: 30,
                             ),
-                            onPressed: () => print('"X" pressed.'),
+                            onPressed: () => onDelete(sight),
                           ),
                         ),
                       ],
