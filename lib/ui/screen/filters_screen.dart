@@ -154,6 +154,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                   min: 0,
                   max: 10000,
                   onChanged: (newValues) {
+                    distanceRangeValuesMocks = newValues;
                     setState(() => _rangeValues = newValues);
                   }),
             ],
