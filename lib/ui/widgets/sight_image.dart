@@ -19,7 +19,7 @@ class SightImage extends StatelessWidget {
     return Image.network(
       url,
       width: double.infinity,
-      fit: BoxFit.fitWidth,
+      fit: BoxFit.cover,
       loadingBuilder: (context, child, loadingProgress) {
         return loadingProgress == null
             ? child

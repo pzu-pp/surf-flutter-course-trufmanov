@@ -1,3 +1,6 @@
+import 'dart:math';
+import 'package:places/mocks.dart';
+
 /// Класс типа достопримечательности
 class SightType {
   String name;
@@ -22,9 +25,9 @@ class Sight {
   String url;
   String details;
   SightType type;
-  String scheduled;
-  String info;
-  SightState state;
+  String scheduled = '';
+  String info = 'Открыто';
+  SightState state = SightState.unknown;
 
   Sight({
     this.name,
@@ -37,4 +40,16 @@ class Sight {
     this.info,
     this.state = SightState.unknown,
   });
+
+  bool distanceInRange() {
+    double _currentLat = 47.51984200;
+    double _currentLon = 42.20454200;
+    double ky = 40000 / 360;
+    double kx = cos(pi * _currentLat / 180.0) * ky;
+    double dx = (_currentLon - lon).abs() * kx;
+    double dy = (_currentLat - lat).abs() * ky;
+    double distance = sqrt(dx * dx + dy * dy) * 1000;
+    return (distance >= distanceRangeValuesMocks.start) && (distance <= distanceRangeValuesMocks.end);
+  }
+
 }

@@ -24,10 +24,10 @@ class _AppState extends State<App> {
     return MaterialApp(
       title: 'Интересные места',
       theme: _themeType == ThemeType.light ? lightTheme : darkTheme,
-      home: SettingsScreen(onThemeChange: (value) => setState( () => _themeType=value)),
+//      home: SettingsScreen(onThemeChange: (value) => setState( () => _themeType=value)),
 //      home: FiltersScreen(),
 //      home: VisitingScreen(),
-//      home: SightListScreen(),
+      home: SightListScreen(),
 //      home: SightDetailsScreen(sight: mocks[4]),
     );
   }
