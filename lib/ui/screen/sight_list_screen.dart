@@ -66,13 +66,6 @@ class _SightListScreenState extends State<SightListScreen> {
               ),
             ),
           ),
-
-////////////////////////////////////////////////////////////////////////////////
-          // InkWell(
-          //     onTap: () => Navigator.of(context).push(
-          //         MaterialPageRoute(builder: (context) => SightSearchScreen())),
-          //     child: SearchTextField(),
-          // ),
         ),
       ),
       body: SingleChildScrollView(
