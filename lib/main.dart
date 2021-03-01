@@ -26,8 +26,8 @@ class _AppState extends State<App> {
       theme: _themeType == ThemeType.light ? lightTheme : darkTheme,
 //      home: SettingsScreen(onThemeChange: (value) => setState( () => _themeType=value)),
 //      home: FiltersScreen(),
-      home: VisitingScreen(),
-//      home: SightListScreen(),
+//      home: VisitingScreen(),
+      home: SightListScreen(),
 //      home: SightDetailsScreen(sight: mocks[4]),
     );
   }

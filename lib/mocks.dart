@@ -96,3 +96,7 @@ final List<String> searchHistory = [
   'памятник',
   'музей'
 ];
+
+int addSightPhotosCounter = 0;
+List<int> addSightPhotos = [
+];

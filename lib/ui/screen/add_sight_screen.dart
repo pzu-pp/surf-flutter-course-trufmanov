@@ -77,14 +77,22 @@ class _AddSightScreenState extends State<AddSightScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                width: double.infinity,
-                height: 72,
-                decoration: BoxDecoration(
-                  color: Colors.black12,
-                  borderRadius: BorderRadius.circular(20),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: List<Widget>.generate(
+                    addSightPhotos.length + 1,
+                    (index) => _PhotoCard(
+                      photoID: index - 1,
+                      onTap: (value) => setState(index == 0
+                          ? () => addSightPhotos.add(++addSightPhotosCounter)
+                          : () {}),
+                      onDelete: (value) => setState(index == 0
+                          ? () {}
+                          : () => addSightPhotos.removeAt(value)),
+                    ),
+                  ),
                 ),
-                child: Center(child: Text('Галерея выбора фотографий')),
               ),
               SizedBox(height: 24),
               Text(
@@ -108,11 +116,8 @@ class _AddSightScreenState extends State<AddSightScreen> {
                     Text(
                       _sightType == null ? 'Не выбрано' : _sightType.name,
                       style: TextStyle(
-                        color: Theme.of(context)
-                            .appBarTheme
-                            .textTheme
-                            .title
-                            .color,
+                        color:
+                            Theme.of(context).appBarTheme.textTheme.title.color,
                         fontSize: 20,
                       ),
                     ),
@@ -135,11 +140,7 @@ class _AddSightScreenState extends State<AddSightScreen> {
                 focusNode: _nameFocusNode,
                 decoration: inputDecoration,
                 style: TextStyle(
-                  color: Theme.of(context)
-                      .appBarTheme
-                      .textTheme
-                      .title
-                      .color,
+                  color: Theme.of(context).appBarTheme.textTheme.title.color,
                   fontSize: 20,
                 ),
               ),
@@ -260,11 +261,7 @@ class _AddSightScreenState extends State<AddSightScreen> {
                 maxLines: 5,
                 decoration: inputDecoration,
                 style: TextStyle(
-                  color: Theme.of(context)
-                      .appBarTheme
-                      .textTheme
-                      .title
-                      .color,
+                  color: Theme.of(context).appBarTheme.textTheme.title.color,
                   fontSize: 20,
                 ),
               ),
@@ -307,6 +304,87 @@ class _AddSightScreenState extends State<AddSightScreen> {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _PhotoCard extends StatelessWidget {
+  final int photoID;
+  final ValueChanged<int> onDelete;
+  final ValueChanged<int> onTap;
+
+  const _PhotoCard(
+      {Key key,
+      @required this.photoID,
+      @required this.onDelete,
+      @required this.onTap})
+      : assert(photoID != null),
+        assert(onDelete != null),
+        assert(onTap != null),
+        super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(8),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: photoID < 0
+            ? InkWell(
+                onTap: () => onTap(photoID),
+                child: Container(
+                  width: 80,
+                  height: 80,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    border: Border.all(
+                      color: Colors.green,
+                      width: 2,
+                    ),
+                  ),
+                  child: Center(
+                      child: Text(
+                    '+',
+                    style: TextStyle(
+                      color: Colors.green,
+                      fontSize: 44,
+                    ),
+                  )),
+                ),
+              )
+            : Container(
+                width: 80,
+                height: 80,
+                color: Colors.blueGrey,
+                child: Stack(
+                  children: [
+                    Center(
+                      child: Text(
+                        '${addSightPhotos[photoID]}',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Padding(
+                        padding: EdgeInsets.all(4),
+                        child: GestureDetector(
+                          onTap: () => onDelete(photoID),
+                          child: Icon(
+                            Icons.cancel,
+                            size: 24,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
       ),
     );
   }
