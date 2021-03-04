@@ -3,6 +3,7 @@ import 'package:places/domain/sight.dart';
 import 'package:places/ui/widgets/sight_card.dart';
 import 'package:places/mocks.dart';
 import 'package:places/ui/widgets/app_bottom_navigation_bar.dart';
+import 'package:places/ui/widgets/draggable_sight_card.dart';
 
 /// Экран виджет "Хочу посетить"/"Посещенные места"
 class VisitingScreen extends StatefulWidget {
@@ -67,13 +68,15 @@ class _VisitingScreenState extends State<VisitingScreen> {
                     child: Column(
                       children: mocks
                           .where((item) => item.state == SightState.scheduled)
-                          .map((item) => SightCard(
-                                key: ValueKey(item.name),
-                                sight: item,
-                                cardType: SightCardType.visiting,
-                                onDelete: (value) => setState(
-                                    () => value.state = SightState.unknown),
-                              ))
+                          .map(
+                            (item) => DraggableSightCard(
+                              sight: item,
+                              cardType: SightCardType.visiting,
+                              onDelete: (value) => setState(
+                                  () => value.state = SightState.unknown),
+                              onChange: () => setState(() {}),
+                            ),
+                          )
                           .toList(),
                     ),
                   ),
@@ -107,13 +110,15 @@ class _VisitingScreenState extends State<VisitingScreen> {
                     child: Column(
                       children: mocks
                           .where((item) => item.state == SightState.visited)
-                          .map((item) => SightCard(
-                                key: ValueKey(item.name),
-                                sight: item,
-                                cardType: SightCardType.visiting,
-                                onDelete: (value) => setState(
-                                    () => value.state = SightState.unknown),
-                              ))
+                          .map(
+                            (item) => DraggableSightCard(
+                              sight: item,
+                              cardType: SightCardType.visiting,
+                              onDelete: (value) => setState(
+                                  () => value.state = SightState.unknown),
+                              onChange: () => setState(() {}),
+                            ),
+                          )
                           .toList(),
                     ),
                   ),
