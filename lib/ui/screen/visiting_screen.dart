@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'dart:io';
 import 'package:places/domain/sight.dart';
 import 'package:places/ui/widgets/sight_card.dart';
 import 'package:places/mocks.dart';
@@ -65,72 +66,78 @@ class _VisitingScreenState extends State<VisitingScreen> {
                       ),
                     ],
                   )
-                : SingleChildScrollView(
-                    child: Column(
-                      children: mocks
+                : ListView.builder(
+                    itemCount: mocks
+                        .where((item) => item.state == SightState.scheduled)
+                        .toList()
+                        .length,
+                    itemBuilder: (context, index) => Dismissible(
+                      key: ValueKey(mocks
                           .where((item) => item.state == SightState.scheduled)
-                          .map(
-                            (item) => Dismissible(
-                              key: ValueKey(item),
-                              direction: DismissDirection.horizontal,
-                              onDismissed: (DismissDirection direction) =>
-                                  setState(
-                                      () => item.state = SightState.unknown),
-                              background: Padding(
-                                padding: EdgeInsets.only(
-                                    left: 16, right: 16, top: 12, bottom: 12),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(20),
-                                  child: Container(
-                                    width:
-                                        MediaQuery.of(context).size.width - 32,
-                                    color: Colors.red,
-                                    child: AspectRatio(
-                                      aspectRatio: 3 / 1.8,
-                                      child: Container(
-                                        child: Align(
-                                          alignment: Alignment.centerRight,
-                                          child: Padding(
-                                            padding: EdgeInsets.all(16),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Image.asset(
-                                                  'res/Bucket.png',
-                                                  color: Colors.white,
-                                                  width: 32,
-                                                  fit: BoxFit.fitWidth,
-                                                ),
-                                                SizedBox(
-                                                  height: 10,
-                                                ),
-                                                Text(
-                                                  'Удалить',
-                                                  style: TextStyle(
-                                                      fontSize: 14,
-                                                      color: Colors.white),
-                                                )
-                                              ],
-                                            ),
-                                          ),
+                          .toList()[index]),
+                      direction: DismissDirection.horizontal,
+                      onDismissed: (DismissDirection direction) => setState(
+                          () => mocks
+                              .where(
+                                  (item) => item.state == SightState.scheduled)
+                              .toList()[index]
+                              .state = SightState.unknown),
+                      background: Padding(
+                        padding: EdgeInsets.only(
+                            left: 16, right: 16, top: 12, bottom: 12),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width - 32,
+                            color: Colors.red,
+                            child: AspectRatio(
+                              aspectRatio: 3 / 1.8,
+                              child: Container(
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Padding(
+                                    padding: EdgeInsets.all(16),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          'res/Bucket.png',
+                                          color: Colors.white,
+                                          width: 32,
+                                          fit: BoxFit.fitWidth,
                                         ),
-                                      ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          'Удалить',
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.white),
+                                        )
+                                      ],
                                     ),
                                   ),
                                 ),
                               ),
-                              child: DraggableSightCard(
-                                sight: item,
-                                cardType: SightCardType.visiting,
-                                onDelete: (value) => setState(
-                                    () => value.state = SightState.unknown),
-                                onChange: () => setState(() {}),
-                              ),
                             ),
-                          )
-                          .toList(),
+                          ),
+                        ),
+                      ),
+                      child: DraggableSightCard(
+                        sight: mocks
+                            .where((item) => item.state == SightState.scheduled)
+                            .toList()[index],
+                        cardType: SightCardType.visiting,
+                        onDelete: (value) =>
+                            setState(() => value.state = SightState.unknown),
+                        onChange: () => setState(() {}),
+                      ),
                     ),
+                    physics: Platform.isAndroid
+                        ? ClampingScrollPhysics()
+                        : BouncingScrollPhysics(),
                   ),
             mocks.where((item) => item.state == SightState.visited).isEmpty
                 ? Column(
@@ -158,72 +165,78 @@ class _VisitingScreenState extends State<VisitingScreen> {
                       ),
                     ],
                   )
-                : SingleChildScrollView(
-                    child: Column(
-                      children: mocks
+                : ListView.builder(
+                    itemCount: mocks
+                        .where((item) => item.state == SightState.visited)
+                        .toList()
+                        .length,
+                    itemBuilder: (context, index) => Dismissible(
+                      key: ValueKey(mocks
                           .where((item) => item.state == SightState.visited)
-                          .map(
-                            (item) => Dismissible(
-                              key: ValueKey(item),
-                              direction: DismissDirection.horizontal,
-                              onDismissed: (DismissDirection direction) =>
-                                  setState(
-                                      () => item.state = SightState.unknown),
-                              background: Padding(
-                                padding: EdgeInsets.only(
-                                    left: 16, right: 16, top: 12, bottom: 12),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(20),
-                                  child: Container(
-                                    width:
-                                        MediaQuery.of(context).size.width - 32,
-                                    color: Colors.red,
-                                    child: AspectRatio(
-                                      aspectRatio: 3 / 1.8,
-                                      child: Container(
-                                        child: Align(
-                                          alignment: Alignment.centerRight,
-                                          child: Padding(
-                                            padding: EdgeInsets.all(16),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Image.asset(
-                                                  'res/Bucket.png',
-                                                  color: Colors.white,
-                                                  width: 32,
-                                                  fit: BoxFit.fitWidth,
-                                                ),
-                                                SizedBox(
-                                                  height: 10,
-                                                ),
-                                                Text(
-                                                  'Удалить',
-                                                  style: TextStyle(
-                                                      fontSize: 14,
-                                                      color: Colors.white),
-                                                )
-                                              ],
-                                            ),
-                                          ),
+                          .toList()[index]),
+                      direction: DismissDirection.horizontal,
+                      onDismissed: (DismissDirection direction) => setState(
+                          () => mocks
+                              .where((item) => item.state == SightState.visited)
+                              .toList()[index]
+                              .state = SightState.unknown),
+                      background: Padding(
+                        padding: EdgeInsets.only(
+                            left: 16, right: 16, top: 12, bottom: 12),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width - 32,
+                            color: Colors.red,
+                            child: AspectRatio(
+                              aspectRatio: 3 / 1.8,
+                              child: Container(
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Padding(
+                                    padding: EdgeInsets.all(16),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          'res/Bucket.png',
+                                          color: Colors.white,
+                                          width: 32,
+                                          fit: BoxFit.fitWidth,
                                         ),
-                                      ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          'Удалить',
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            color: Colors.white,
+                                          ),
+                                        )
+                                      ],
                                     ),
                                   ),
                                 ),
                               ),
-                              child: DraggableSightCard(
-                                sight: item,
-                                cardType: SightCardType.visiting,
-                                onDelete: (value) => setState(
-                                    () => value.state = SightState.unknown),
-                                onChange: () => setState(() {}),
-                              ),
                             ),
-                          )
-                          .toList(),
+                          ),
+                        ),
+                      ),
+                      child: DraggableSightCard(
+                        sight: mocks
+                            .where((item) => item.state == SightState.visited)
+                            .toList()[index],
+                        cardType: SightCardType.visiting,
+                        onDelete: (value) =>
+                            setState(() => value.state = SightState.unknown),
+                        onChange: () => setState(() {}),
+                      ),
                     ),
+                    physics: Platform.isAndroid
+                        ? ClampingScrollPhysics()
+                        : BouncingScrollPhysics(),
                   ),
           ],
         ),

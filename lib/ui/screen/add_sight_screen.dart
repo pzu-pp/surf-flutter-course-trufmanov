@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'dart:io';
 import 'package:places/mocks.dart';
 import 'package:places/domain/sight.dart';
 import 'package:places/ui/screen/select_sight_type_screen.dart';
@@ -77,22 +78,24 @@ class _AddSightScreenState extends State<AddSightScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: List<Widget>.generate(
-                    addSightPhotos.length + 1,
-                    (index) => _PhotoCard(
-                      photoID: index - 1,
-                      onTap: (value) => index == 0
-                          ? setState(
-                              () => addSightPhotos.add(++addSightPhotosCounter))
-                          : () {},
-                      onDelete: (value) => index == 0
-                          ? () {}
-                          : setState(() => addSightPhotos.removeAt(value)),
-                    ),
+              Container(
+                height: 96,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: addSightPhotos.length + 1,
+                  itemBuilder: (context, index) => _PhotoCard(
+                    photoID: index - 1,
+                    onTap: (value) => index == 0
+                        ? setState(
+                            () => addSightPhotos.add(++addSightPhotosCounter))
+                        : () {},
+                    onDelete: (value) => index == 0
+                        ? () {}
+                        : setState(() => addSightPhotos.removeAt(value)),
                   ),
+                  physics: Platform.isAndroid
+                      ? ClampingScrollPhysics()
+                      : BouncingScrollPhysics(),
                 ),
               ),
               SizedBox(height: 24),
