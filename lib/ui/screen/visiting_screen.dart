@@ -1,8 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:places/domain/sight.dart';
 import 'package:places/ui/widgets/sight_card.dart';
 import 'package:places/mocks.dart';
 import 'package:places/ui/widgets/app_bottom_navigation_bar.dart';
+import 'package:places/ui/widgets/draggable_sight_card.dart';
 
 /// Экран виджет "Хочу посетить"/"Посещенные места"
 class VisitingScreen extends StatefulWidget {
@@ -67,13 +69,66 @@ class _VisitingScreenState extends State<VisitingScreen> {
                     child: Column(
                       children: mocks
                           .where((item) => item.state == SightState.scheduled)
-                          .map((item) => SightCard(
-                                key: ValueKey(item.name),
+                          .map(
+                            (item) => Dismissible(
+                              key: ValueKey(item),
+                              direction: DismissDirection.horizontal,
+                              onDismissed: (DismissDirection direction) =>
+                                  setState(
+                                      () => item.state = SightState.unknown),
+                              background: Padding(
+                                padding: EdgeInsets.only(
+                                    left: 16, right: 16, top: 12, bottom: 12),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Container(
+                                    width:
+                                        MediaQuery.of(context).size.width - 32,
+                                    color: Colors.red,
+                                    child: AspectRatio(
+                                      aspectRatio: 3 / 1.8,
+                                      child: Container(
+                                        child: Align(
+                                          alignment: Alignment.centerRight,
+                                          child: Padding(
+                                            padding: EdgeInsets.all(16),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Image.asset(
+                                                  'res/Bucket.png',
+                                                  color: Colors.white,
+                                                  width: 32,
+                                                  fit: BoxFit.fitWidth,
+                                                ),
+                                                SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Text(
+                                                  'Удалить',
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      color: Colors.white),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              child: DraggableSightCard(
                                 sight: item,
                                 cardType: SightCardType.visiting,
                                 onDelete: (value) => setState(
                                     () => value.state = SightState.unknown),
-                              ))
+                                onChange: () => setState(() {}),
+                              ),
+                            ),
+                          )
                           .toList(),
                     ),
                   ),
@@ -107,13 +162,66 @@ class _VisitingScreenState extends State<VisitingScreen> {
                     child: Column(
                       children: mocks
                           .where((item) => item.state == SightState.visited)
-                          .map((item) => SightCard(
-                                key: ValueKey(item.name),
+                          .map(
+                            (item) => Dismissible(
+                              key: ValueKey(item),
+                              direction: DismissDirection.horizontal,
+                              onDismissed: (DismissDirection direction) =>
+                                  setState(
+                                      () => item.state = SightState.unknown),
+                              background: Padding(
+                                padding: EdgeInsets.only(
+                                    left: 16, right: 16, top: 12, bottom: 12),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Container(
+                                    width:
+                                        MediaQuery.of(context).size.width - 32,
+                                    color: Colors.red,
+                                    child: AspectRatio(
+                                      aspectRatio: 3 / 1.8,
+                                      child: Container(
+                                        child: Align(
+                                          alignment: Alignment.centerRight,
+                                          child: Padding(
+                                            padding: EdgeInsets.all(16),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Image.asset(
+                                                  'res/Bucket.png',
+                                                  color: Colors.white,
+                                                  width: 32,
+                                                  fit: BoxFit.fitWidth,
+                                                ),
+                                                SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Text(
+                                                  'Удалить',
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      color: Colors.white),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              child: DraggableSightCard(
                                 sight: item,
                                 cardType: SightCardType.visiting,
                                 onDelete: (value) => setState(
                                     () => value.state = SightState.unknown),
-                              ))
+                                onChange: () => setState(() {}),
+                              ),
+                            ),
+                          )
                           .toList(),
                     ),
                   ),

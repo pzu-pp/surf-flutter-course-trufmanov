@@ -70,7 +70,7 @@ class _SightListScreenState extends State<SightListScreen> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: mocks.map((item) => SightCard(sight: item)).toList(),
+          children: mocks.map((item) => SightCard(sight: item, onDelete: (value) {},)).toList(),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
