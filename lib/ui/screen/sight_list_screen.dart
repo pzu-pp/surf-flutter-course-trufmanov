@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
+import 'package:flutter/services.dart';
 import 'package:places/ui/screen/filters_screen.dart';
 import 'package:places/ui/widgets/sight_card.dart';
 import 'package:places/mocks.dart';
@@ -59,7 +61,8 @@ class _SightListScreenState extends State<SightListScreen> {
                         color: Colors.green,
                       ),
                       onPressed: () => Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => FiltersScreen())),
+                          MaterialPageRoute(
+                              builder: (context) => FiltersScreen())),
                     ),
                   ],
                 ),
@@ -68,10 +71,15 @@ class _SightListScreenState extends State<SightListScreen> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: mocks.map((item) => SightCard(sight: item, onDelete: (value) {},)).toList(),
+      body: ListView.builder(
+        itemCount: mocks.length,
+        itemBuilder: (context, index) => SightCard(
+          sight: mocks[index],
+          onDelete: (value) {},
         ),
+        physics: Platform.isAndroid
+            ? ClampingScrollPhysics()
+            : BouncingScrollPhysics(),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Material(
