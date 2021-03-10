@@ -22,7 +22,7 @@ class Sight {
   String name;
   double lat;
   double lon;
-  String url;
+  List<String> urls;
   String details;
   SightType type;
   String scheduled = '';
@@ -33,7 +33,7 @@ class Sight {
     this.name,
     this.lat,
     this.lon,
-    this.url,
+    this.urls,
     this.details,
     this.type,
     this.scheduled,

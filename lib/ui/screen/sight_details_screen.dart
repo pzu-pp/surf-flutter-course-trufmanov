@@ -4,14 +4,21 @@ import 'package:places/domain/sight.dart';
 import 'package:places/ui/widgets/sight_image.dart';
 
 /// Класс виджета детальной информации отдельной достопримечательности
-class SightDetailsScreen extends StatelessWidget {
+class SightDetailsScreen extends StatefulWidget {
   final Sight sight;
 
   /// Конструктор
   /// sight - класс достопримечательности, обязательный не null параметр
-  const SightDetailsScreen({Key key, @required this.sight})
+  SightDetailsScreen({Key key, @required this.sight})
       : assert(sight != null),
         super(key: key);
+
+  @override
+  _SightDetailsScreenState createState() => _SightDetailsScreenState();
+}
+
+class _SightDetailsScreenState extends State<SightDetailsScreen> {
+  int _currentPage = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -20,34 +27,68 @@ class SightDetailsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Stack(
-              children: [
-                SightImage(url: sight.url),
-                Positioned(
-                  top: 50,
-                  left: 20,
-                  child: SizedBox(
-                    height: 40,
-                    width: 40,
-                    child: RaisedButton(
-                      color: Theme.of(context).canvasColor,
-                      elevation: 0,
-                      textColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
-                      child: Image.asset(
-                        'res/Arrow.png',
-                         height: 30,
-                        color:
-                            Theme.of(context).appBarTheme.textTheme.title.color,
-                        colorBlendMode: BlendMode.modulate,
-                        fit: BoxFit.fitHeight,
+            Container(
+              height: 360,
+              child: Stack(
+                children: [
+                  PageView.builder(
+                    onPageChanged: (value) =>
+                        setState(() => _currentPage = value),
+                    itemCount: widget.sight.urls.length,
+                    itemBuilder: (context, index) => Container(
+                      height: 360,
+                      child: SightImage(
+                        url: widget.sight.urls[index],
                       ),
-                      onPressed: () => print('"<" pressed'),
                     ),
                   ),
-                ),
-              ],
+                  Positioned(
+                    top: 50,
+                    left: 20,
+                    child: SizedBox(
+                      height: 40,
+                      width: 40,
+                      child: RaisedButton(
+                        color: Theme.of(context).canvasColor,
+                        elevation: 0,
+                        textColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                        child: Image.asset(
+                          'res/Arrow.png',
+                          height: 30,
+                          color: Theme.of(context)
+                              .appBarTheme
+                              .textTheme
+                              .title
+                              .color,
+                          colorBlendMode: BlendMode.modulate,
+                          fit: BoxFit.fitHeight,
+                        ),
+                        onPressed: () => print('"<" pressed'),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 352,
+                    left: MediaQuery.of(context).size.width /
+                        widget.sight.urls.length *
+                        _currentPage,
+                    child: SizedBox(
+                      height: 8,
+                      width: MediaQuery.of(context).size.width /
+                          widget.sight.urls.length,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                          color: Color(0xFF252849),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
             Padding(
               padding:
@@ -55,7 +96,7 @@ class SightDetailsScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    sight.name,
+                    widget.sight.name,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -69,7 +110,7 @@ class SightDetailsScreen extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        sight.type.name,
+                        widget.sight.type.name,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -84,7 +125,7 @@ class SightDetailsScreen extends StatelessWidget {
                       ),
                       SizedBox(width: 20),
                       Text(
-                        sight.info,
+                        widget.sight.info,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -97,7 +138,7 @@ class SightDetailsScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 24),
                   Text(
-                    sight.details,
+                    widget.sight.details,
                     style: TextStyle(
                       color:
                           Theme.of(context).appBarTheme.textTheme.title.color,

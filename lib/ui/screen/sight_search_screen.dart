@@ -183,7 +183,7 @@ class _SearchedSightCard extends StatelessWidget {
                   aspectRatio: 1,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
-                    child: SightImage(url: sight.url),
+                    child: SightImage(url: sight.urls[0]),
                   ),
                 ),
                 SizedBox(
