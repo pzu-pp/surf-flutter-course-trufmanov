@@ -28,6 +28,7 @@ flutter:
     - res/
     - res/empty_pages/
     - res/sight_types/
+    - res/tutorial/
    
 #  fonts:
 #    - family: Roboto
