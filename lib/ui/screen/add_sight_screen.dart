@@ -281,15 +281,18 @@ class _AddSightScreenState extends State<AddSightScreen> {
             onPressed: _testData()
                 ? () {
                     mocks.insert(
-                        0,
-                        Sight(
-                            type: sightTypeMocks[0],
-                            name: _nameController.text,
-                            lat: double.parse(_latController.text),
-                            lon: double.parse(_lonController.text),
-                            details: _detailsController.text,
-                            url:
-                                'http://cruiseinform.ru/upload/medialibrary/150/150c113f3a20e9c2dfc39416120ed51b.jpg'));
+                      0,
+                      Sight(
+                        type: sightTypeMocks[0],
+                        name: _nameController.text,
+                        lat: double.parse(_latController.text),
+                        lon: double.parse(_lonController.text),
+                        details: _detailsController.text,
+                        urls: [
+                          'http://cruiseinform.ru/upload/medialibrary/150/150c113f3a20e9c2dfc39416120ed51b.jpg'
+                        ],
+                      ),
+                    );
                     Navigator.of(context).pop();
                   }
                 : null,

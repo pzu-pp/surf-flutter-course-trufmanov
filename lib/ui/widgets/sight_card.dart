@@ -48,7 +48,7 @@ class SightCard extends StatelessWidget {
                         height: 96,
                         child: Stack(
                           children: [
-                            SightImage(url: sight.url),
+                            SightImage(url: sight.urls[0]),
                             Positioned(
                               top: 16,
                               left: 16,

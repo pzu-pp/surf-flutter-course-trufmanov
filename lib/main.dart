@@ -6,6 +6,7 @@ import 'package:places/mocks.dart';
 import 'package:places/ui/screen/res/themes.dart';
 import 'package:places/ui/screen/filters_screen.dart';
 import 'package:places/ui/screen/settings_screen.dart';
+import 'package:places/ui/screen/onboarding_screen.dart';
 
 void main() => runApp(App());
 
@@ -26,9 +27,10 @@ class _AppState extends State<App> {
       theme: _themeType == ThemeType.light ? lightTheme : darkTheme,
 //      home: SettingsScreen(onThemeChange: (value) => setState( () => _themeType=value)),
 //      home: FiltersScreen(),
-      home: VisitingScreen(),
+//      home: VisitingScreen(),
 //      home: SightListScreen(),
 //      home: SightDetailsScreen(sight: mocks[4]),
+      home: OnboardingScreen(),
     );
   }
 }
