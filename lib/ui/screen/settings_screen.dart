@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:places/ui/screen/res/themes.dart';
 import 'package:places/ui/widgets/app_bottom_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:places/ui/screen/onboarding_screen.dart';
 
 /// Экран виджет "Настройки"
 class SettingsScreen extends StatefulWidget {
@@ -60,7 +61,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 InkWell(
-                  onTap: () => print('"Смотреть туториал" pressed.'),
+                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => OnboardingScreen())),
                   child: Text(
                     'Смотреть туториал',
                     style: TextStyle(
