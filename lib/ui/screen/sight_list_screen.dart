@@ -20,66 +20,75 @@ class _SightListScreenState extends State<SightListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 118,
         title: Text('Список интересных мест'),
-        bottom: PreferredSize(
-          preferredSize: Size(double.infinity, 52),
-          child: InkWell(
-            onTap: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => SightSearchScreen())),
-            child: Container(
-              height: 55,
-              margin: EdgeInsets.only(left: 16, right: 16),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(25)),
-                color: Colors.black12,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 16, right: 16),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.search,
-                      size: 30,
-                      color: Colors.grey,
+      ),
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            expandedHeight: 118,
+            flexibleSpace: Center(
+              child: PreferredSize(
+                preferredSize: Size(double.infinity, 52),
+                child: InkWell(
+                  onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => SightSearchScreen())),
+                  child: Container(
+                    height: 55,
+                    margin: EdgeInsets.only(left: 16, right: 16),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(25)),
+                      color: Colors.black12,
                     ),
-                    Expanded(
-                      child: Text(
-                        'Поиск',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 20,
-                        ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 16, right: 16),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.search,
+                            size: 30,
+                            color: Colors.grey,
+                          ),
+                          Expanded(
+                            child: Text(
+                              'Поиск',
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                          TextButton(
+                            child: Image.asset(
+                              'res/Filter.png',
+                              fit: BoxFit.fitWidth,
+                              height: 30,
+                              width: 30,
+                              color: Colors.green,
+                            ),
+                            onPressed: () => Navigator.of(context).push(
+                                MaterialPageRoute(
+                                    builder: (context) => FiltersScreen())),
+                          ),
+                        ],
                       ),
                     ),
-                    TextButton(
-                      child: Image.asset(
-                        'res/Filter.png',
-                        fit: BoxFit.fitWidth,
-                        height: 30,
-                        width: 30,
-                        color: Colors.green,
-                      ),
-                      onPressed: () => Navigator.of(context).push(
-                          MaterialPageRoute(
-                              builder: (context) => FiltersScreen())),
-                    ),
-                  ],
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-      ),
-      body: ListView.builder(
-        itemCount: mocks.length,
-        itemBuilder: (context, index) => SightCard(
-          sight: mocks[index],
-          onDelete: (value) {},
-        ),
-        physics: Platform.isAndroid
-            ? ClampingScrollPhysics()
-            : BouncingScrollPhysics(),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                for (int i = 0; i < mocks.length; i++)
+                  SightCard(
+                    sight: mocks[i],
+                    onDelete: (value) {},
+                  ),
+              ],
+            ),
+          ),
+        ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Material(
