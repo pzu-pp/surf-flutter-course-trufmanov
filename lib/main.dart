@@ -7,6 +7,7 @@ import 'package:places/ui/screen/res/themes.dart';
 import 'package:places/ui/screen/filters_screen.dart';
 import 'package:places/ui/screen/settings_screen.dart';
 import 'package:places/ui/screen/onboarding_screen.dart';
+import 'package:places/ui/screen/splash_screen.dart';
 
 void main() => runApp(App());
 
@@ -30,7 +31,8 @@ class _AppState extends State<App> {
 //      home: VisitingScreen(),
 //      home: SightListScreen(),
 //      home: SightDetailsScreen(sight: mocks[4]),
-      home: OnboardingScreen(),
+//      home: OnboardingScreen(),
+      home: SplashScreen(),
     );
   }
 }
