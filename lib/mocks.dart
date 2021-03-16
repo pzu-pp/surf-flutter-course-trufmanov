@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain/sight.dart';
+import 'package:places/ui/screen/res/themes.dart';
 
 // Тестовые данные
 
@@ -43,7 +44,7 @@ final List<Sight> mocks = [
     name: 'Волгодонской эколого-исторический музей',
     lat: 47.51896900,
     lon: 42.15008200,
-    urls: ['https://img.localway.ru/fullsize/692875.jpg'],
+    urls: ['https://dostoprimechatelnosti-m.ru/wp-content/uploads/2017/06/ers22.jpg'],
     details:
         'Волгодонский эколого-исторический музей является самым крупным государственным музеем в регионе. Включает в себя 12 экспозиционных залов, посвященных народной культуре и отдельный комплекс казачьего куреня XIX века. Фонд музея насчитывает более 70 тысяч экспонатов с разных стран мира, в том числе палеонтологические и археологические коллекции, собрания живописи, графики, декоративно-прикладного искусства, также документы, фотографии, монеты и редкие книги. Представлены в музее и коллекции иконописи XVI - XX веков, деревянных скульптур, изделий из золота, серебра и фарфора. Посетителям будут интересны и выставки изделий из стекла, выставка боевых реликвий, образцы изделий народной культуры и другие экспозиции.',
     type: sightTypeMocks[2],
@@ -99,3 +100,5 @@ final List<String> searchHistory = ['памятник', 'музей'];
 
 int addSightPhotosCounter = 0;
 List<int> addSightPhotos = [];
+bool showOnboardingScreen = true;
+ThemeType themeType = ThemeType.light;

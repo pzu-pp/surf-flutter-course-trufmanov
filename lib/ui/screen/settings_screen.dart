@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:places/mocks.dart';
 import 'package:places/ui/screen/res/themes.dart';
 import 'package:places/ui/widgets/app_bottom_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,12 +7,6 @@ import 'package:places/ui/screen/onboarding_screen.dart';
 
 /// Экран виджет "Настройки"
 class SettingsScreen extends StatefulWidget {
-  final ValueChanged<ThemeType> onThemeChange;
-
-  const SettingsScreen({Key key, @required this.onThemeChange})
-      : assert(onThemeChange != null),
-        super(key: key);
-
   @override
   _SettingsScreenState createState() => _SettingsScreenState();
 }
@@ -23,7 +18,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 80,
         title: Text('Настройки'),
       ),
       body: Padding(
@@ -47,8 +41,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   activeColor: Colors.green,
                   onChanged: (bool value) {
                     _isDarkTheme = value;
-                    widget.onThemeChange(
-                        value ? ThemeType.dark : ThemeType.light);
+                    themeType = value ? ThemeType.dark : ThemeType.light;
                   },
                 ),
               ],
@@ -89,7 +82,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: AppBottomNavigationBar(),
+      bottomNavigationBar: AppBottomNavigationBar(
+        currentIndex: 3,
+      ),
     );
   }
 }

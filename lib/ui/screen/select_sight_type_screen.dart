@@ -21,7 +21,6 @@ class _SelectSightTypeScreenState extends State<SelectSightTypeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 108,
         title: Text('Категория'),
         leading: TextButton(
           child: Image.asset(
@@ -34,7 +33,6 @@ class _SelectSightTypeScreenState extends State<SelectSightTypeScreen> {
           ),
           onPressed: () => Navigator.of(context).pop(widget.sightType),
         ),
-        leadingWidth: 100,
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16),

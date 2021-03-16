@@ -23,7 +23,7 @@ class _SightSearchScreenState extends State<SightSearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 118,
+        automaticallyImplyLeading: false,
         title: Text('Список интересных мест'),
         bottom: PreferredSize(
           preferredSize: Size(double.infinity, 52),
@@ -155,7 +155,9 @@ class _SightSearchScreenState extends State<SightSearchScreen> {
                         ),
                       ))),
       ),
-      bottomNavigationBar: AppBottomNavigationBar(),
+      bottomNavigationBar: AppBottomNavigationBar(
+        currentIndex: 0,
+      ),
     );
   }
 }
