@@ -8,6 +8,7 @@ import 'package:places/ui/widgets/app_bottom_navigation_bar.dart';
 import 'package:places/ui/screen/add_sight_screen.dart';
 import 'package:places/ui/widgets/search_text_field.dart';
 import 'package:places/ui/screen/sight_search_screen.dart';
+import 'package:places/ui/screen/sight_details_screen.dart';
 
 /// Класс виджета списка достопримечательностей
 class SightListScreen extends StatefulWidget {
@@ -30,8 +31,8 @@ class _SightListScreenState extends State<SightListScreen> {
               child: PreferredSize(
                 preferredSize: Size(double.infinity, 52),
                 child: InkWell(
-                  onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => SightSearchScreen())),
+                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => SightSearchScreen())),
                   child: Container(
                     height: 55,
                     margin: EdgeInsets.only(left: 16, right: 16),
@@ -131,7 +132,9 @@ class _SightListScreenState extends State<SightListScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: AppBottomNavigationBar(),
+      bottomNavigationBar: AppBottomNavigationBar(
+        currentIndex: 0,
+      ),
     );
   }
 }

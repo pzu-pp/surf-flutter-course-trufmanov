@@ -87,8 +87,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               child: SizedBox(
                 height: 48,
                 child: RaisedButton(
-                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => SightListScreen())),
+                  onPressed: () => Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                          builder: (context) => SightListScreen())),
                   color: Colors.green,
                   elevation: 0,
                   textColor: Colors.white,
