@@ -569,8 +569,3 @@ class SelectPhotoDialog extends StatelessWidget {
     );
   }
 }
-
-// style: TextStyle(
-// color: Theme.of(context).appBarTheme.textTheme.title.color,
-// fontSize: 20,
-// ),
