@@ -240,7 +240,9 @@ class _VisitingScreenState extends State<VisitingScreen> {
                   ),
           ],
         ),
-        bottomNavigationBar: AppBottomNavigationBar(),
+        bottomNavigationBar: AppBottomNavigationBar(
+          currentIndex: 2,
+        ),
       ),
     );
   }

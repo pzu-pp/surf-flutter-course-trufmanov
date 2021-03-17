@@ -45,46 +45,31 @@ class _FiltersScreenState extends State<FiltersScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 80,
-        title: Padding(
-          padding: EdgeInsets.all(16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SizedBox(
-                height: 40,
-                width: 40,
-                child: RaisedButton(
-                  color: Theme.of(context).canvasColor,
-                  elevation: 0,
-                  textColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  child: Image.asset(
-                    'res/Arrow.png',
-                    height: 30,
-                    color: Theme.of(context).appBarTheme.textTheme.title.color,
-                    colorBlendMode: BlendMode.modulate,
-                    fit: BoxFit.fitHeight,
-                  ),
-                  onPressed: () => print('"<" pressed'),
-                ),
-              ),
-              TextButton(
-                onPressed: () => setState(() => sightTypeMocks
-                    .forEach((element) => element.isChecked = false)),
-                child: Text(
-                  "Очистить",
-                  style: TextStyle(
-                      color: Colors.green,
-                      fontFamily: "Roboto",
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20),
-                ),
-              ),
-            ],
+        automaticallyImplyLeading: false,
+        leading: TextButton(
+          child: Image.asset(
+            'res/Arrow.png',
+            height: 30,
+            color: Theme.of(context).appBarTheme.textTheme.title.color,
+            colorBlendMode: BlendMode.modulate,
+            fit: BoxFit.fitHeight,
           ),
+          onPressed: () => Navigator.of(context).pop(),
         ),
+        actions: [
+          TextButton(
+            onPressed: () => setState(() =>
+                sightTypeMocks.forEach((element) => element.isChecked = false)),
+            child: Text(
+              "Очистить",
+              style: TextStyle(
+                  color: Colors.green,
+                  fontFamily: "Roboto",
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20),
+            ),
+          ),
+        ],
       ),
       body: Padding(
         padding: EdgeInsets.all(16),
@@ -166,7 +151,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
         child: SizedBox(
           height: 48,
           child: RaisedButton(
-            onPressed: () => print('"Показать" pressed'),
+            onPressed: () => Navigator.of(context).pop(),
             color: Colors.green,
             elevation: 0,
             textColor: Colors.white,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:places/mocks.dart';
 import 'package:places/ui/screen/onboarding_screen.dart';
+import 'package:places/ui/screen/sight_list_screen.dart';
 
 /// Стартовый экран приложения
 class SplashScreen extends StatefulWidget {
@@ -58,8 +60,9 @@ class _SplashScreenState extends State<SplashScreen> {
     _isInitialized = Future<void>.delayed(Duration(seconds: 2), () {
       print(
           'Время показа SplashScreen (2 секунды) истекло. Переход на следующий экран.');
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => OnboardingScreen()));
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (context) =>
+              showOnboardingScreen ? OnboardingScreen() : SightListScreen()));
     });
     print('_navigateToNext - finished.');
   }
