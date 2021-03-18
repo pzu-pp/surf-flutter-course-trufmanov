@@ -94,8 +94,31 @@ class SightCard extends StatelessWidget {
                                         height: 30,
                                         width: 30,
                                       ),
-                                      onPressed: () =>
-                                          print('"Calendar" pressed.'),
+                                      onPressed: () async {
+
+                                        var res = await showDatePicker(
+                                          context: context,
+                                          initialDate: DateTime.now(),
+                                          firstDate: DateTime.now(),
+                                          lastDate: DateTime.now()
+                                              .add(Duration(days: 365)),
+                                          locale: Locale("ru", "RU"),
+                                        );
+
+                                        // Из задания четко не понятно Date или
+                                        // Time Picker нужен. Поэтому дополнительно
+                                        // TimePicker на всякий случай.
+                                        // var res = await showTimePicker(
+                                        //   context: context,
+                                        //   initialTime: TimeOfDay.now(),
+                                        //);
+
+                                        if (res != null) {
+                                          print('Visit is scheduled for $res.');
+                                        } else {
+                                          print('Scheduling is canceled.');
+                                        }
+                                      },
                                     ),
                                   ),
                             Positioned(
