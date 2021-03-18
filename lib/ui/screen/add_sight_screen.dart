@@ -516,7 +516,7 @@ class SelectPhotoDialog extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.all(16),
                         child: Image.asset(
-                          'res/Photo.png',
+                          'res/Fail.png',
                           height: 32,
                           color: Theme.of(context)
                               .appBarTheme
