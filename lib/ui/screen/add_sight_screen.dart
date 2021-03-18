@@ -85,10 +85,14 @@ class _AddSightScreenState extends State<AddSightScreen> {
                   itemCount: addSightPhotos.length + 1,
                   itemBuilder: (context, index) => _PhotoCard(
                     photoID: index - 1,
-                    onTap: (value) => index == 0
-                        ? setState(
-                            () => addSightPhotos.add(++addSightPhotosCounter))
-                        : () {},
+                    onAdd: () async {
+                      if (await showDialog(
+                        context: context,
+                        builder: (context) => SelectPhotoDialog(),
+                      ))
+                        setState(
+                            () => addSightPhotos.add(++addSightPhotosCounter));
+                    },
                     onDelete: (value) => index == 0
                         ? () {}
                         : setState(() => addSightPhotos.removeAt(value)),
@@ -319,16 +323,16 @@ class _AddSightScreenState extends State<AddSightScreen> {
 class _PhotoCard extends StatelessWidget {
   final int photoID;
   final ValueChanged<int> onDelete;
-  final ValueChanged<int> onTap;
+  final VoidCallback onAdd;
 
   const _PhotoCard(
       {Key key,
       @required this.photoID,
       @required this.onDelete,
-      @required this.onTap})
+      @required this.onAdd})
       : assert(photoID != null),
         assert(onDelete != null),
-        assert(onTap != null),
+        assert(onAdd != null),
         super(key: key);
 
   @override
@@ -339,7 +343,7 @@ class _PhotoCard extends StatelessWidget {
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: InkWell(
-                  onTap: () => onTap(photoID),
+                  onTap: () => onAdd(),
                   child: Container(
                     width: 80,
                     height: 80,
@@ -419,5 +423,149 @@ class _PhotoCard extends StatelessWidget {
               ),
             ),
           );
+  }
+}
+
+class SelectPhotoDialog extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Padding(
+          padding: EdgeInsets.only(left: 16, right: 16),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              color: Theme.of(context).canvasColor,
+            ),
+            child: Column(
+              children: [
+                FlatButton(
+                  onPressed: () => Navigator.of(context).pop(true),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.all(16),
+                        child: Image.asset(
+                          'res/Camera.png',
+                          height: 32,
+                          color: Theme.of(context)
+                              .appBarTheme
+                              .textTheme
+                              .title
+                              .color,
+                          colorBlendMode: BlendMode.modulate,
+                          fit: BoxFit.fitHeight,
+                        ),
+                      ),
+                      Text(
+                        'Камера',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Theme.of(context)
+                              .appBarTheme
+                              .textTheme
+                              .title
+                              .color,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Divider(),
+                FlatButton(
+                  onPressed: () => Navigator.of(context).pop(true),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.all(16),
+                        child: Image.asset(
+                          'res/Photo.png',
+                          height: 32,
+                          color: Theme.of(context)
+                              .appBarTheme
+                              .textTheme
+                              .title
+                              .color,
+                          colorBlendMode: BlendMode.modulate,
+                          fit: BoxFit.fitHeight,
+                        ),
+                      ),
+                      Text(
+                        'Фотография',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Theme.of(context)
+                              .appBarTheme
+                              .textTheme
+                              .title
+                              .color,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Divider(),
+                FlatButton(
+                  onPressed: () => Navigator.of(context).pop(true),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.all(16),
+                        child: Image.asset(
+                          'res/Photo.png',
+                          height: 32,
+                          color: Theme.of(context)
+                              .appBarTheme
+                              .textTheme
+                              .title
+                              .color,
+                          colorBlendMode: BlendMode.modulate,
+                          fit: BoxFit.fitHeight,
+                        ),
+                      ),
+                      Text(
+                        'Файл',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Theme.of(context)
+                              .appBarTheme
+                              .textTheme
+                              .title
+                              .color,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              color: Theme.of(context).canvasColor,
+            ),
+            child: FlatButton(
+              onPressed: () => Navigator.of(context).pop(false),
+              padding: EdgeInsets.all(16),
+              child: Text(
+                'ОТМЕНА',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.green,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
