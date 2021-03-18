@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain/sight.dart';
 import 'package:places/ui/widgets/sight_image.dart';
+import 'package:places/ui/widgets/sight_detail_bottom_sheet.dart';
 
 enum SightCardType {
   simple,
@@ -40,7 +41,16 @@ class SightCard extends StatelessWidget {
               child: Material(
                 color: Colors.black12,
                 child: InkWell(
-                  onTap: () => print('"OnSightCard" pressed.'),
+                  onTap: () => showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    builder: (context) => Container(
+                      height:
+                          MediaQuery.of(context).copyWith().size.height - 100,
+                      child: SightDetailBottomSheet(sight: sight),
+                    ),
+                  ),
                   child: Column(
                     children: [
                       Container(
