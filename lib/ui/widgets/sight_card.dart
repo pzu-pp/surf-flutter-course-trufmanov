@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'dart:io';
 import 'package:places/domain/sight.dart';
 import 'package:places/ui/widgets/sight_image.dart';
 import 'package:places/ui/widgets/sight_detail_bottom_sheet.dart';
@@ -95,24 +97,80 @@ class SightCard extends StatelessWidget {
                                         width: 30,
                                       ),
                                       onPressed: () async {
-
-                                        var res = await showDatePicker(
-                                          context: context,
-                                          initialDate: DateTime.now(),
-                                          firstDate: DateTime.now(),
-                                          lastDate: DateTime.now()
-                                              .add(Duration(days: 365)),
-                                          locale: Locale("ru", "RU"),
-                                        );
-
-                                        // Из задания четко не понятно Date или
-                                        // Time Picker нужен. Поэтому дополнительно
-                                        // TimePicker на всякий случай.
-                                        // var res = await showTimePicker(
-                                        //   context: context,
-                                        //   initialTime: TimeOfDay.now(),
-                                        //);
-
+                                        var res;
+                                        if (Platform.isAndroid) {
+                                          res = await showDatePicker(
+                                            context: context,
+                                            initialDate: DateTime.now(),
+                                            firstDate: DateTime.now(),
+                                            lastDate: DateTime.now()
+                                                .add(Duration(days: 365)),
+                                            locale: Locale("ru", "RU"),
+                                          );
+                                        } else {
+                                          res = await showModalBottomSheet<
+                                              DateTime>(
+                                            context: context,
+                                            builder: (context) {
+                                              DateTime selectedDate =
+                                                  DateTime.now();
+                                              return Container(
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height /
+                                                    3,
+                                                child: Column(
+                                                  children: [
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        CupertinoButton(
+                                                          child:
+                                                              Text('Отменить'),
+                                                          onPressed: () =>
+                                                              Navigator.of(
+                                                                      context)
+                                                                  .pop(),
+                                                        ),
+                                                        CupertinoButton(
+                                                          child: Text(
+                                                              'Запланировать'),
+                                                          onPressed: () =>
+                                                              Navigator.of(
+                                                                      context)
+                                                                  .pop(
+                                                                      selectedDate),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Expanded(
+                                                      child:
+                                                          CupertinoDatePicker(
+                                                        mode:
+                                                            CupertinoDatePickerMode
+                                                                .date,
+                                                        minimumDate:
+                                                            DateTime.now(),
+                                                        maximumDate:
+                                                            DateTime.now().add(
+                                                                Duration(
+                                                                    days: 365)),
+                                                        initialDateTime:
+                                                            DateTime.now(),
+                                                        onDateTimeChanged:
+                                                            (value) =>
+                                                                selectedDate =
+                                                                    value,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            },
+                                          );
+                                        }
                                         if (res != null) {
                                           print('Visit is scheduled for $res.');
                                         } else {
