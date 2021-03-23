@@ -78,7 +78,14 @@ class _SightListScreenState extends State<SightListScreen> {
               ),
             ),
           ),
-          SliverList(
+          SliverGrid(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount:
+                  MediaQuery.of(context).orientation == Orientation.portrait
+                      ? 1
+                      : 2,
+              childAspectRatio: 3 / 1.8,
+            ),
             delegate: SliverChildListDelegate(
               [
                 for (int i = 0; i < mocks.length; i++)
