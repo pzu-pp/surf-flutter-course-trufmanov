@@ -93,20 +93,46 @@ class _FiltersScreenState extends State<FiltersScreen> {
               SizedBox(
                 height: 24,
               ),
-              GridView.count(
-                crossAxisCount: 3,
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                children: List.generate(sightTypeMocks.length, (index) {
-                  return Center(
-                    child: _SightTypeWidget(
-                      sightType: sightTypeMocks[index],
-                      onTap: (SightType sightType) => setState(
-                          () => sightType.isChecked = !sightType.isChecked),
+              MediaQuery.of(context).size.height > 800
+                  ? Container(
+                      height: 256,
+                      child: GridView.count(
+                        crossAxisCount: 3,
+                        physics: AlwaysScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        children: List.generate(sightTypeMocks.length, (index) {
+                          return SizedBox(
+                            width: 128,
+                            height: 128,
+                            child: Center(
+                              child: _SightTypeWidget(
+                                sightType: sightTypeMocks[index],
+                                onTap: (SightType sightType) => setState(() =>
+                                    sightType.isChecked = !sightType.isChecked),
+                              ),
+                            ),
+                          );
+                        }),
+                      ),
+                    )
+                  : Container(
+                      height: 128,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: sightTypeMocks.length,
+                        itemBuilder: (context, index) => SizedBox(
+                          width: 128,
+                          height: 128,
+                          child: Center(
+                            child: _SightTypeWidget(
+                              sightType: sightTypeMocks[index],
+                              onTap: (SightType sightType) => setState(() =>
+                                  sightType.isChecked = !sightType.isChecked),
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
-                  );
-                }),
-              ),
               SizedBox(
                 height: 60.0,
               ),
